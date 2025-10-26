@@ -2,18 +2,20 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Octicons from "@expo/vector-icons/Octicons";
 import React from "react";
 import { Tabs } from "expo-router";
+import { useTheme } from "@/hooks/useTheme";
 
 const Tabslayout = () => {
+    const {colors} = useTheme();
   return (
     <Tabs
       screenOptions={{
         headerShown: false, // this will not show the header which is like home/setting page so it will not show the HOME which is header.
-        tabBarActiveTintColor: "orange",
-        tabBarInactiveTintColor: "white",
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.textMuted,
         tabBarStyle: {
-          backgroundColor: "#708090",
+          backgroundColor: colors.surface,
           borderTopWidth: 3,
-          borderTopColor: "#db7093",
+          borderTopColor: colors.border,
           height: 70,
           paddingBottom: 15,
           paddingTop: 10,
