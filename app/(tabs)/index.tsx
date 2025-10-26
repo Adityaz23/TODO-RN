@@ -1,71 +1,44 @@
-import { api } from "@/convex/_generated/api";
+import { createHomeStyles } from "@/assets/styles/home.styles";
 import { useTheme } from "@/hooks/useTheme";
-import { useMutation, useQuery } from "convex/react";
-import { Link, router } from "expo-router";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Button,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
+import {StatusBar, Text,TouchableOpacity,} from "react-native";
+import {LinearGradient} from "expo-linear-gradient";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Headers from "@/components/Headers";
 
 export default function Index() {
-  const { toggleDarkMode } = useTheme();
-  const todos = useQuery(api.todos.getTodos);
-  console.log(todos);
-
-  const addTodo = useMutation(api.todos.addTodo);
-  const clearAllTodos = useMutation(api.todos.clearAllTodos);
-
+  const { toggleDarkMode,colors } = useTheme();
+  const homeStyles = createHomeStyles(colors);
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text style={styles.container}>This is the test text.</Text>
-      <View>
-        <TouchableOpacity style={styles.btn} onPress={() => {}}>
-          <Text style={styles.btnText}>Click Me!</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={toggleDarkMode}>
-          <Text>Toggle</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={()=>addTodo({text:"walk it like i talk it!"})}>
-          <Text>Add a new Todo!</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={()=>clearAllTodos()}>
-          <Text>Delete all Todos!</Text>
-        </TouchableOpacity>
-      </View>
-      {/* <Link style={styles.link} href={"/about"}> */}
-      {/* <TouchableOpacity style={styles.pressableLink} onPress={()=>router.push("/about")}>
-        <Text style={styles.font}>Click here to go to the about page.</Text>
-      </TouchableOpacity> */}
-      {/* </Link> */}
-    </View>
+    // <View
+    //   style={{
+    //     flex: 1,
+    //     justifyContent: "center",
+    //     alignItems: "center",
+    //   }}
+    // >
+    //   <Text style={styles.container}>This is the test text.</Text>
+    //   <View>
+    //     <TouchableOpacity style={styles.container} onPress={() => {}}>
+    //       <Text style={styles.content}>Click Me!</Text>
+    //     </TouchableOpacity>
+    //     <TouchableOpacity onPress={toggleDarkMode}>
+    //       <Text>Toggle</Text>
+    //     </TouchableOpacity>
+    //   </View>
+    //   {/* <Link style={styles.link} href={"/about"}> */}
+    //   {/* <TouchableOpacity style={styles.pressableLink} onPress={()=>router.push("/about")}>
+    //     <Text style={styles.font}>Click here to go to the about page.</Text>
+    //   </TouchableOpacity> */}
+    //   {/* </Link> */}
+    // </View>
+    <LinearGradient colors={colors.gradients.background} style={homeStyles.container}>
+      <StatusBar barStyle={colors.statusBarStyle}/>
+    <SafeAreaView style={homeStyles.safeArea}>
+    <Headers />
+      <TouchableOpacity onPress={toggleDarkMode}>
+        <Text>Toggle</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
+    </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    textAlign: "center",
-    fontSize: 30,
-    color: "blue",
-  },
-  btn: {
-    backgroundColor: "pink",
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "brown",
-    padding: 4,
-    marginTop: 20,
-  },
-  btnText: {
-    fontSize: 20,
-  },
-});
