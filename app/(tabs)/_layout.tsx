@@ -1,4 +1,5 @@
-import {Ionicons }from "@expo/vector-icons";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import Octicons from "@expo/vector-icons/Octicons";
 import React from "react";
 import { Tabs } from "expo-router";
 
@@ -6,26 +7,38 @@ const Tabslayout = () => {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: "purple",
-        tabBarInactiveTintColor: "gray",
+        headerShown: false, // this will not show the header which is like home/setting page so it will not show the HOME which is header.
+        tabBarActiveTintColor: "orange",
+        tabBarInactiveTintColor: "white",
+        tabBarStyle: {
+          backgroundColor: "#708090",
+          borderTopWidth: 3,
+          borderTopColor: "#db7093",
+          height: 70,
+          paddingBottom: 15,
+          paddingTop: 10,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: "500",
+        },
       }}
     >
       <Tabs.Screen
-        name="Index"
+        name="index"
         options={{
           title: "Todos",
-          tabBarIcon: ({color,size}) => (
-           <Ionicons name="flash" size={size} color={color}/>
+          tabBarIcon: ({ color, size }) => (
+            <Octicons name="tasklist" size={24} color="black" />
           ),
         }}
       />
       <Tabs.Screen
-        name="Settings"
+        name="settings"
         options={{
           title: "Settings",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="settings" size={size} color={color} />
+            <MaterialIcons name="settings" size={24} color="black" />
           ),
         }}
       />
