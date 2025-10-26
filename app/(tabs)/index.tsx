@@ -17,6 +17,7 @@ export default function Index() {
   console.log(todos);
 
   const addTodo = useMutation(api.todos.addTodo);
+  const clearAllTodos = useMutation(api.todos.clearAllTodos);
 
   return (
     <View
@@ -36,6 +37,9 @@ export default function Index() {
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>addTodo({text:"walk it like i talk it!"})}>
           <Text>Add a new Todo!</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={()=>clearAllTodos()}>
+          <Text>Delete all Todos!</Text>
         </TouchableOpacity>
       </View>
       {/* <Link style={styles.link} href={"/about"}> */}
