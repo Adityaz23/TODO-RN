@@ -1,4 +1,6 @@
+import { api } from "@/convex/_generated/api";
 import { useTheme } from "@/hooks/useTheme";
+import { useMutation, useQuery } from "convex/react";
 import { Link, router } from "expo-router";
 import {
   Text,
@@ -11,6 +13,11 @@ import {
 
 export default function Index() {
   const { toggleDarkMode } = useTheme();
+  const todos = useQuery(api.todos.getTodos);
+  console.log(todos);
+
+  const addTodo = useMutation(api.todos.addTodo);
+
   return (
     <View
       style={{
@@ -24,7 +31,12 @@ export default function Index() {
         <TouchableOpacity style={styles.btn} onPress={() => {}}>
           <Text style={styles.btnText}>Click Me!</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={toggleDarkMode}><Text>Toggle</Text></TouchableOpacity>
+        <TouchableOpacity onPress={toggleDarkMode}>
+          <Text>Toggle</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={()=>addTodo({text:"walk it like i talk it!"})}>
+          <Text>Add a new Todo!</Text>
+        </TouchableOpacity>
       </View>
       {/* <Link style={styles.link} href={"/about"}> */}
       {/* <TouchableOpacity style={styles.pressableLink} onPress={()=>router.push("/about")}>
