@@ -41,8 +41,8 @@ export default function Index() {
     try {
       await toggleTodo({ id });
     } catch (error) {
-      console.log("Error toggling todo!", error);
-      Alert.alert("Error", "Failed to toggle the todo!");
+      console.log("Error toggling mission!", error);
+      Alert.alert("Error", "Failed to toggle the mission!");
     }
   };
   const handleDeleteTodo = async (id: Id<"todos">) => {
@@ -64,8 +64,8 @@ export default function Index() {
         setEditingId(null)
         setEditText("")
       } catch (error) {
-        console.log("Error updating the todo!",error);
-        Alert.alert("Error","Cannot update the todo!");
+        console.log("Error updating the mission!",error);
+        Alert.alert("Error","Cannot update the mission!");
       }
     }
     
@@ -157,7 +157,7 @@ export default function Index() {
                 colors={colors.gradients.warning}
                 style={homeStyles.actionButton}
               >
-                <FontAwesome5 name="pen-nib" size={18} color="orange" />
+                <FontAwesome5 name="pen-nib" size={18} color="white" />
               </LinearGradient>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => handleDeleteTodo(item._id)} activeOpacity={0.7}>
